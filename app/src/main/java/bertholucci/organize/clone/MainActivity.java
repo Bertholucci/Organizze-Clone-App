@@ -17,6 +17,9 @@ public class MainActivity extends IntroActivity {
             setContentView(R.layout.activity_main);
          */
 
+        setButtonBackVisible(false);
+        setButtonNextVisible(false);
+
         addSlide(new FragmentSlide.Builder()
             .background(android.R.color.white)
                 .fragment(R.layout.intro_1)
