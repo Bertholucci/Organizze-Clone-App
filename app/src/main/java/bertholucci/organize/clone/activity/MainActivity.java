@@ -1,4 +1,4 @@
-package bertholucci.organize.clone;
+package bertholucci.organize.clone.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 
+import bertholucci.organize.clone.R;
 import bertholucci.organize.clone.activity.CadastroActivity;
 import bertholucci.organize.clone.activity.LoginActivity;
 
