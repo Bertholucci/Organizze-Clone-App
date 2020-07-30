@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
@@ -14,8 +15,11 @@ import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 import bertholucci.organize.clone.R;
 import bertholucci.organize.clone.activity.CadastroActivity;
 import bertholucci.organize.clone.activity.LoginActivity;
+import bertholucci.organize.clone.config.ConfiguracaoFirebase;
 
 public class MainActivity extends IntroActivity {
+
+    private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,8 @@ public class MainActivity extends IntroActivity {
         /* Not necessary because the IntroActivity statement
             setContentView(R.layout.activity_main);
          */
+
+        verificarUsuarioLogado();
 
         setButtonBackVisible(false);
         setButtonNextVisible(false);
@@ -61,11 +67,30 @@ public class MainActivity extends IntroActivity {
         );
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        verificarUsuarioLogado();
+    }
+
     public void botaoEntrar(View view){
         startActivity(new Intent(this, LoginActivity.class));
     }
 
     public void botaoCadastrar(View view){
         startActivity(new Intent(this, CadastroActivity.class));
+    }
+
+    public void verificarUsuarioLogado(){
+         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
+         autenticacao.signOut();
+
+         if(autenticacao.getCurrentUser() != null){
+             abrirTelaPrincipal();
+         }
+    }
+
+    public void abrirTelaPrincipal(){
+        startActivity(new Intent(this, PrincipalActivity.class));
     }
 }

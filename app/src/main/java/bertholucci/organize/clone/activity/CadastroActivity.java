@@ -90,6 +90,8 @@ public class CadastroActivity extends AppCompatActivity {
                     Toast.makeText(CadastroActivity.this,
                             "Sucesso ao cadastrar usuário!",
                             Toast.LENGTH_SHORT).show();
+
+                    finish();
                 }else {
 
                     String excecao = "";
